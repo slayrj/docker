@@ -30,3 +30,7 @@ If you have any problems with or questions about this image, please [contact us]
 Documentation
 ==================
 For FileRun documentation, please visit https://docs.filerun.com/
+
+My modifications
+==================
+I Just added the ssl resource to official build on apache2 on default port 443
