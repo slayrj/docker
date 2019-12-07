@@ -17,6 +17,7 @@ RUN apt-get update \
         mysql-client \
         unzip \
         cron \
+	ssl-cert \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure zip --with-libzip \
@@ -70,6 +71,11 @@ COPY ./import-db.sh /
 RUN chmod +x /wait-for-it.sh
 RUN chmod +x /import-db.sh
 RUN chmod +x /entrypoint.sh
+RUN a2ensite default-ssl
+
+RUN a2enmod ssl
+RUN make-ssl-cert generate-default-snakeoil --force-overwrite
+
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
